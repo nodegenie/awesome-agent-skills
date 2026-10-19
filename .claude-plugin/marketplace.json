@@ -1,0 +1,17 @@
+{
+  "name": "usethisskill",
+  "owner": { "name": "Use This Skill", "url": "https://usethisskill.com" },
+  "metadata": { "description": "Find proven agent skills from inside Claude Code: search 1,400+ skills, read proofs, install in one line." },
+  "plugins": [
+    {
+      "name": "usethisskill",
+      "source": "./plugins/usethisskill",
+      "description": "Search Use This Skill for agent skills, check which ones are proven, and install the best one.",
+      "version": "1.0.0",
+      "author": { "name": "Use This Skill", "url": "https://usethisskill.com" },
+      "homepage": "https://usethisskill.com/connect",
+      "category": "productivity",
+      "keywords": ["skills", "claude skills", "agent skills", "directory", "proofs"]
+    }
+  ]
+}

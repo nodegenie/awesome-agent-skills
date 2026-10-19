@@ -1,0 +1,13 @@
+{
+  "name": "usethisskill",
+  "version": "1.0.0",
+  "description": "Search Use This Skill for agent skills, check which ones are proven, and install the best one.",
+  "author": { "name": "Use This Skill", "url": "https://usethisskill.com" },
+  "homepage": "https://usethisskill.com/connect",
+  "repository": "https://github.com/nodegenie/awesome-agent-skills",
+  "license": "CC0-1.0",
+  "keywords": ["skills", "directory", "proofs"],
+  "mcpServers": {
+    "usethisskill": { "type": "http", "url": "https://usethisskill.com/mcp" }
+  }
+}

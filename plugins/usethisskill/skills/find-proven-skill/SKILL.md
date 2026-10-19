@@ -1,0 +1,17 @@
+---
+name: find-proven-skill
+description: Find and install the best agent skill for a task from Use This Skill, preferring skills with a published with-and-without proof. Use when the user asks for a skill, asks which skill to use for a job, or wants to know whether a skill is worth installing.
+---
+
+# Find a proven skill
+
+Use the `usethisskill` MCP server (installed with this plugin) rather than guessing from memory.
+
+1. Call `search_skills` with a short description of the job (for example "landing page design", "write unit tests", "deploy to Vercel"). Read the top results.
+2. For each candidate, call `get_skill` to read the install command, license and the SKILL.md description. Prefer a skill whose `proven` field is true: call `get_proof` to read the brief and the two result pages, and tell the user in one or two sentences what the skill changed.
+3. Recommend one skill. Show its one-line install command and where the folder lands (`.claude/skills/<name>/` in the project, or `~/.claude/skills/<name>/` for every project). Install it only if the user asks.
+4. If no skill fits, say so plainly. Do not invent a skill name.
+
+If the user wrote a skill of their own, `order_proof` explains how they can get it proven and listed.
+
+Rules: never state that a skill works without a proof or the user's own test; always link the source repository; respect the skill's license.
