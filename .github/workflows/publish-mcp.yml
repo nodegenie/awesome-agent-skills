@@ -1,0 +1,26 @@
+name: Publish MCP server to the official registry
+on:
+  workflow_dispatch:
+  push:
+    paths: ["mcp/server.json"]
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install mcp-publisher
+        run: |
+          curl -sSL -o pub.tgz https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz
+          tar xzf pub.tgz mcp-publisher && sudo mv mcp-publisher /usr/local/bin/
+      - name: Validate
+        working-directory: mcp
+        run: mcp-publisher validate
+      - name: Login (GitHub OIDC, proves the io.github.nodegenie namespace)
+        working-directory: mcp
+        run: mcp-publisher login github-oidc
+      - name: Publish
+        working-directory: mcp
+        run: mcp-publisher publish
