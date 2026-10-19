@@ -5,6 +5,7 @@ on:
     paths: ["mcp/server.json"]
 permissions:
   contents: read
+  issues: write
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -15,8 +16,16 @@ jobs:
           curl -sSL -o pub.tgz https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_linux_amd64.tar.gz
           tar xzf pub.tgz mcp-publisher && sudo mv mcp-publisher /usr/local/bin/
       - name: Validate
+        id: validate
         working-directory: mcp
-        run: mcp-publisher validate
+        continue-on-error: true
+        run: mcp-publisher validate 2>&1 | tee ../out.txt; exit ${PIPESTATUS[0]}
+      - name: Report validation output
+        if: steps.validate.outcome == 'failure'
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          gh issue create -t "MCP registry validate failed ($(date -u +%F))" -b "$(printf '```\n%s\n```' "$(cat out.txt)")"
+          exit 1
       - name: Login (HTTP domain verification for usethisskill.com)
         working-directory: mcp
         run: mcp-publisher login http --domain usethisskill.com --private-key "$MCP_PRIVATE_KEY"
