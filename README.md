@@ -102,6 +102,21 @@ Skills belong to their authors. This list links to each source and only reproduc
 
 A machine-readable index of the catalog is published at [usethisskill.com/llms.txt](https://usethisskill.com/llms.txt) and [usethisskill.com/llms-full.txt](https://usethisskill.com/llms-full.txt).
 
+## Submit a skill
+
+Open an issue with the **Add a skill repository** template. Submissions are checked, scanned and indexed, and answered on the issue, within a few hours, around the clock. Nothing waits for months here.
+
+## Use it from inside your agent
+
+**Claude Code plugin** (adds a `/find-proven-skill` skill and the MCP server):
+
+```
+claude plugin marketplace add nodegenie/awesome-agent-skills
+claude plugin install usethisskill@usethisskill
+```
+
+**MCP server** for Claude, Claude Code, Cursor and any MCP client: `https://usethisskill.com/mcp`. Setup for each client is at [usethisskill.com/connect](https://usethisskill.com/connect).
+
 ## Contributing
 
 Skills are discovered automatically from the source repositories every week. To add a repository that publishes skills, [open an issue](https://github.com/nodegenie/awesome-agent-skills/issues/new) with the link.
