@@ -87,6 +87,10 @@ claude plugin install usethisskill@usethisskill
 
 **MCP server** for Claude, Claude Code, Cursor and any MCP client: `https://usethisskill.com/mcp`. Setup for each client is at [usethisskill.com/connect](https://usethisskill.com/connect).
 
+## Submit a skill
+
+Open an issue with the **Add a skill repository** template. Submissions are checked, scanned and indexed, and answered on the issue, within a few hours, around the clock. Nothing waits for months here.
+
 ## Scan your own skills before you install them
 
 The same nine-pattern safety scan that runs on every skill in the directory, for any repository:
