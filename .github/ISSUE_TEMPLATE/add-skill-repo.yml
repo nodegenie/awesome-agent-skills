@@ -1,0 +1,31 @@
+name: Add a skill repository
+description: Ask for your repository's skills to be indexed on usethisskill.com and in this list.
+title: "Add <owner/repo>"
+labels: ["submission"]
+body:
+  - type: input
+    id: repo
+    attributes:
+      label: Repository
+      description: The public GitHub repository that holds one or more SKILL.md folders.
+      placeholder: https://github.com/owner/repo
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: License
+      description: The repository needs a license file. Permissive licenses (MIT, Apache-2.0, CC0) let us show the SKILL.md text on the page; others get a link to the source instead.
+      placeholder: MIT
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What the skill does, in one or two sentences
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        What happens next: the repository is checked for SKILL.md files and a license, every skill folder is run through the safety scan, and the skills are indexed with their scan result shown on each page, usually within a few hours. You get a reply here with the links. If you would like a published with-and-without proof, three runs each way, that is a separate order at https://usethisskill.com/prove.

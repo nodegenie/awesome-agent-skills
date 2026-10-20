@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a wrong listing
+    url: https://github.com/nodegenie/awesome-agent-skills/issues/new?title=Correction%3A+%3Cskill%3E&labels=correction
+    about: A wrong description, license or link on usethisskill.com. Open a blank issue with the skill name and what is wrong.
+  - name: Order a proof for your skill
+    url: https://usethisskill.com/prove
+    about: A published with-and-without comparison, three runs each way, for $49.
