@@ -1,0 +1,11 @@
+{
+  "name": "usethisskill",
+  "version": "0.1.0",
+  "description": "Scan agent skill folders (.claude/skills, .agents/skills, .cursor/skills) for unsafe patterns. From usethisskill.com.",
+  "type": "module",
+  "bin": { "usethisskill": "./scan/cli.mjs" },
+  "files": ["scan"],
+  "license": "MIT",
+  "repository": "github:nodegenie/awesome-agent-skills",
+  "homepage": "https://usethisskill.com/scan"
+}

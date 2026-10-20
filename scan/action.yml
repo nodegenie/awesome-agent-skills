@@ -1,0 +1,23 @@
+name: "Use This Skill: scan agent skills"
+description: "Scans .claude/skills, .agents/skills, .cursor/skills and similar folders for fetch-and-execute, destructive, credential, exfiltration, obfuscation and rules-override patterns. Free for public repositories; private repositories need a Team key from usethisskill.com."
+branding: { icon: "shield", color: "orange" }
+inputs:
+  path: { description: "Repository path to scan", default: "." }
+  fail-on: { description: "Fail the job on 'flag' (default), 'review' or 'none'", default: "flag" }
+  key: { description: "Team key for private repositories (usethisskill.com/pricing)", default: "" }
+runs:
+  using: composite
+  steps:
+    - name: Check plan for private repositories
+      shell: bash
+      env: { KEY: "${{ inputs.key }}", PRIVATE: "${{ github.event.repository.private }}" }
+      run: |
+        if [ "$PRIVATE" = "true" ]; then
+          if [ -z "$KEY" ]; then echo "::error::This repository is private. Scanning private repositories needs a Team key: https://usethisskill.com/pricing"; exit 1; fi
+          ok=$(curl -s "https://usethisskill.com/api/scan/verify?key=$KEY" || echo '{}')
+          echo "$ok" | grep -q '"ok":true' || { echo "::error::The Team key was not accepted: https://usethisskill.com/pricing"; exit 1; }
+        fi
+    - name: Scan
+      shell: bash
+      env: { P: "${{ inputs.path }}", F: "${{ inputs.fail-on }}" }
+      run: node "${{ github.action_path }}/scan.mjs" "$P" --fail-on "$F" | tee "$GITHUB_STEP_SUMMARY"

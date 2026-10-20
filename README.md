@@ -86,3 +86,22 @@ claude plugin install usethisskill@usethisskill
 ```
 
 **MCP server** for Claude, Claude Code, Cursor and any MCP client: `https://usethisskill.com/mcp`. Setup for each client is at [usethisskill.com/connect](https://usethisskill.com/connect).
+
+## Scan your own skills before you install them
+
+The same nine-pattern safety scan that runs on every skill in the directory, for any repository:
+
+```
+npx github:nodegenie/awesome-agent-skills scan
+```
+
+Or on every pull request:
+
+```yaml
+- uses: actions/checkout@v4
+- uses: nodegenie/awesome-agent-skills/scan@main
+  with:
+    fail-on: flag   # or review, or none
+```
+
+It checks `.claude/skills`, `.agents/skills`, `.cursor/skills`, `.codex/skills`, `.gemini/skills` and `skills/` for fetch-and-execute commands, destructive commands, data sent to outside endpoints, obfuscated code, rules-override text, credential access, privilege escalation, persistence and force-pushes, and shows the file and line for each finding. Free for public repositories. Private repositories use a Team key from [usethisskill.com/pricing](https://usethisskill.com/pricing). The rules are explained at [usethisskill.com/safety](https://usethisskill.com/safety).
