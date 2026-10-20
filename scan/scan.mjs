@@ -24,10 +24,10 @@ function walk(dir, out = []) {
 // Which folders to scan: every SKILL.md's folder under the usual skill directories, or the whole path with --all.
 function skillFolders() {
   if (flag("--all")) return [root];
+  // Every folder that holds a SKILL.md, wherever it lives in the repository (the usual skill directories
+  // are the common case, but many repos keep skills under their own layout).
   const found = new Set();
-  const candidates = SKILL_DIRS.map((d) => path.join(root, d)).filter(fs.existsSync);
-  if (candidates.length === 0 && fs.existsSync(path.join(root, "SKILL.md"))) return [root];
-  for (const c of candidates) for (const f of walk(c)) if (path.basename(f) === "SKILL.md") found.add(path.dirname(f));
+  for (const f of walk(root)) if (path.basename(f) === "SKILL.md") found.add(path.dirname(f));
   return [...found];
 }
 
