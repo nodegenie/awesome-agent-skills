@@ -1,8 +1,34 @@
 # Awesome Agent Skills
 
-A curated, weekly-refreshed list of **1,402 agent skills** for Claude Code, Codex, Cursor and other coding agents, indexed from 11 public repositories and searchable at **[usethisskill.com](https://usethisskill.com)**.
+**1,743 agent skills** for Claude Code, Codex, Cursor and Gemini CLI, indexed weekly from 15 public repositories, each one scanned for the patterns a skill should never need. Searchable at **[usethisskill.com](https://usethisskill.com)**.
 
-A skill is a folder with a `SKILL.md` file that teaches a coding agent how to do one kind of job well. Agents load the skill when a task calls for it.
+## Scan a skill before you install it
+
+A skill is a folder of instructions an agent follows with your permissions. This one command checks every skill folder in a repository for fetch-and-execute commands, destructive commands, data sent to outside endpoints, obfuscated code, rules-override text, credential access, privilege escalation, persistence and force-pushes, with the file and line for each finding:
+
+```
+npx github:nodegenie/awesome-agent-skills scan
+```
+
+```
+clear    .claude/skills/weather-fetcher  (1 files)
+FLAGGED  skills/paperclip  (6 files)
+         ! Downloads and executes code in one step
+           skills/paperclip/references/installation.md:13  curl -fsSL https://example.com/install.sh | bash
+
+2 skill folder(s): flagged. Rules: https://usethisskill.com/safety
+```
+
+Or on every pull request:
+
+```yaml
+- uses: actions/checkout@v4
+- uses: nodegenie/awesome-agent-skills/scan@main
+  with:
+    fail-on: flag   # or review, or none
+```
+
+Across the directory today: **1,687 clear, 46 to review, 10 flagged.** Free for public repositories; private repositories use a Team key from [usethisskill.com/pricing](https://usethisskill.com/pricing). Every rule is explained at [usethisskill.com/safety](https://usethisskill.com/safety).
 
 ## Proven skills
 
@@ -10,16 +36,20 @@ Star counts show who found a skill. A proof shows what it changes. On [Use This 
 
 | Skill | Category | Source |
 |---|---|---|
-| [high-end-visual-design](https://usethisskill.com/skills/high-end-visual-design) | Design | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill/tree/main/skills/soft-skill) |
 | [canvas-design](https://usethisskill.com/skills/canvas-design) | Design | [anthropics/skills](https://github.com/anthropics/skills/tree/main/skills/canvas-design) |
 | [frontend-design](https://usethisskill.com/skills/frontend-design) | Design | [anthropics/skills](https://github.com/anthropics/skills/tree/main/skills/frontend-design) |
 | [theme-factory](https://usethisskill.com/skills/theme-factory) | Design | [anthropics/skills](https://github.com/anthropics/skills/tree/main/skills/theme-factory) |
 | [ui-ux-pro-max](https://usethisskill.com/skills/ui-ux-pro-max) | Design | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/tree/main/.claude/skills/ui-ux-pro-max) |
-| [design-taste-frontend-v1](https://usethisskill.com/skills/design-taste-frontend-v1) | Design | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill/tree/main/skills/taste-skill-v1) |
-| [minimalist-ui](https://usethisskill.com/skills/minimalist-ui) | Design | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill/tree/main/skills/minimalist-skill) |
 | [tailwind-design-system](https://usethisskill.com/skills/tailwind-design-system) | Design | [wshobson/agents](https://github.com/wshobson/agents/tree/main/plugins/frontend-mobile-development/skills/tailwind-design-system) |
 | [web-design-guidelines](https://usethisskill.com/skills/web-design-guidelines) | Design | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills/tree/main/skills/web-design-guidelines) |
 | [accessibility-compliance](https://usethisskill.com/skills/accessibility-compliance) | Design | [wshobson/agents](https://github.com/wshobson/agents/tree/main/plugins/ui-design/skills/accessibility-compliance) |
+| [brand-guidelines](https://usethisskill.com/skills/brand-guidelines) | Design | [anthropics/skills](https://github.com/anthropics/skills/tree/main/skills/brand-guidelines) |
+| [internal-comms](https://usethisskill.com/skills/internal-comms) | Other | [anthropics/skills](https://github.com/anthropics/skills/tree/main/skills/internal-comms) |
+| [changelog-generator](https://usethisskill.com/skills/changelog-generator) | Docs & Writing | [ComposioHQ/awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills/tree/master/changelog-generator) |
+| [test-driven-development](https://usethisskill.com/skills/test-driven-development) | Testing | [obra/superpowers](https://github.com/obra/superpowers/tree/main/skills/test-driven-development) |
+| [writing-plans](https://usethisskill.com/skills/writing-plans) | Docs & Writing | [obra/superpowers](https://github.com/obra/superpowers/tree/main/skills/writing-plans) |
+| [skill-creator](https://usethisskill.com/skills/skill-creator) | Testing | [anthropics/skills](https://github.com/anthropics/skills/tree/main/skills/skill-creator) |
+| [systematic-debugging](https://usethisskill.com/skills/systematic-debugging) | Testing | [obra/superpowers](https://github.com/obra/superpowers/tree/main/skills/systematic-debugging) |
 
 The first proof is free to try live. [See the proofs →](https://usethisskill.com/proven)
 
@@ -27,16 +57,16 @@ The first proof is free to try live. [See the proofs →](https://usethisskill.c
 
 | Category | Skills |
 |---|---|
-| [Automation](skills/automation.md) | 762 |
-| [Design](skills/design.md) | 144 |
-| [Backend](skills/backend.md) | 108 |
-| [Testing](skills/testing.md) | 96 |
-| [Data & Science](skills/data-science.md) | 89 |
-| [Other](skills/other.md) | 51 |
-| [Security](skills/security.md) | 51 |
-| [Docs & Writing](skills/docs-writing.md) | 49 |
-| [Frontend](skills/frontend.md) | 28 |
-| [Motion](skills/motion.md) | 24 |
+| [Automation](skills/automation.md) | 768 |
+| [Design](skills/design.md) | 232 |
+| [Testing](skills/testing.md) | 176 |
+| [Backend](skills/backend.md) | 165 |
+| [Data & Science](skills/data-science.md) | 149 |
+| [Other](skills/other.md) | 67 |
+| [Security](skills/security.md) | 60 |
+| [Docs & Writing](skills/docs-writing.md) | 55 |
+| [Motion](skills/motion.md) | 37 |
+| [Frontend](skills/frontend.md) | 34 |
 
 ## Install a skill
 
@@ -51,16 +81,20 @@ Claude Code reads `.claude/skills/` automatically. Codex, Cursor and other agent
 ## Where the skills come from
 
 - [ComposioHQ/awesome-claude-skills](https://github.com/ComposioHQ/awesome-claude-skills) · 864 skills
+- [sandbaseai/sandbase-skills](https://github.com/sandbaseai/sandbase-skills) · 246 skills
 - [wshobson/agents](https://github.com/wshobson/agents) · 185 skills
 - [K-Dense-AI/claude-scientific-skills](https://github.com/K-Dense-AI/claude-scientific-skills) · 177 skills
+- [Shaisolaris/solaris-dev-shop](https://github.com/Shaisolaris/solaris-dev-shop) · 100 skills
 - [trailofbits/skills](https://github.com/trailofbits/skills) · 85 skills
 - [anthropics/skills](https://github.com/anthropics/skills) · 20 skills
 - [obra/superpowers](https://github.com/obra/superpowers) · 15 skills
 - [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) · 13 skills
-- [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) · 12 skills
 - [remotion-dev/skills](https://github.com/remotion-dev/skills) · 12 skills
 - [vercel-labs/agent-browser](https://github.com/vercel-labs/agent-browser) · 10 skills
 - [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) · 9 skills
+- [morluto/rea](https://github.com/morluto/rea) · 5 skills
+- [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) · 1 skills
+- [flashfrogluo/second-take](https://github.com/flashfrogluo/second-take) · 1 skills
 
 Skills belong to their authors. This list links to each source and only reproduces a skill's full text on usethisskill.com when its license allows it.
 
@@ -74,38 +108,4 @@ Skills are discovered automatically from the source repositories every week. To 
 
 ---
 
-Last refreshed October 18, 2026. Maintained by [Tineessa Nelson](https://x.com/tineessavm) · [usethisskill.com](https://usethisskill.com)
-
-## Use it from inside your agent
-
-**Claude Code plugin** (adds a `/find-proven-skill` skill and the MCP server):
-
-```
-claude plugin marketplace add nodegenie/awesome-agent-skills
-claude plugin install usethisskill@usethisskill
-```
-
-**MCP server** for Claude, Claude Code, Cursor and any MCP client: `https://usethisskill.com/mcp`. Setup for each client is at [usethisskill.com/connect](https://usethisskill.com/connect).
-
-## Submit a skill
-
-Open an issue with the **Add a skill repository** template. Submissions are checked, scanned and indexed, and answered on the issue, within a few hours, around the clock. Nothing waits for months here.
-
-## Scan your own skills before you install them
-
-The same nine-pattern safety scan that runs on every skill in the directory, for any repository:
-
-```
-npx github:nodegenie/awesome-agent-skills scan
-```
-
-Or on every pull request:
-
-```yaml
-- uses: actions/checkout@v4
-- uses: nodegenie/awesome-agent-skills/scan@main
-  with:
-    fail-on: flag   # or review, or none
-```
-
-It checks `.claude/skills`, `.agents/skills`, `.cursor/skills`, `.codex/skills`, `.gemini/skills` and `skills/` for fetch-and-execute commands, destructive commands, data sent to outside endpoints, obfuscated code, rules-override text, credential access, privilege escalation, persistence and force-pushes, and shows the file and line for each finding. Free for public repositories. Private repositories use a Team key from [usethisskill.com/pricing](https://usethisskill.com/pricing). The rules are explained at [usethisskill.com/safety](https://usethisskill.com/safety).
+Last refreshed October 19, 2026. Maintained by [Tineessa Nelson](https://x.com/tineessavm) · [usethisskill.com](https://usethisskill.com)
