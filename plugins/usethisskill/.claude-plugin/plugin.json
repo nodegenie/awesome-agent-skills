@@ -1,7 +1,7 @@
 {
   "name": "usethisskill",
-  "version": "1.0.0",
-  "description": "Search Use This Skill for agent skills, check which ones are proven, and install the best one.",
+  "version": "1.1.0",
+  "description": "Search Use This Skill for agent skills, check which ones are proven, safety-check any skill before installing it, and install the best one.",
   "author": { "name": "Use This Skill", "url": "https://usethisskill.com" },
   "homepage": "https://usethisskill.com/connect",
   "repository": "https://github.com/nodegenie/awesome-agent-skills",
