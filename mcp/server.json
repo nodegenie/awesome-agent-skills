@@ -1,14 +1,14 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.usethisskill/skills",
-  "description": "Search 1,400+ agent skills for Claude Code, Codex and Cursor, with install commands and proofs.",
+  "description": "Search 1,700+ agent skills for Claude, Codex and Cursor, each safety-scanned, with proofs.",
   "title": "Use This Skill",
   "websiteUrl": "https://usethisskill.com/connect",
   "repository": {
     "url": "https://github.com/nodegenie/awesome-agent-skills",
     "source": "github"
   },
-  "version": "1.0.0",
+  "version": "1.1.0",
   "remotes": [
     {
       "type": "streamable-http",
