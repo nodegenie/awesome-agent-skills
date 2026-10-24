@@ -21,3 +21,15 @@ runs:
       shell: bash
       env: { P: "${{ inputs.path }}", F: "${{ inputs.fail-on }}" }
       run: node "${{ github.action_path }}/scan.mjs" "$P" --fail-on "$F" | tee "$GITHUB_STEP_SUMMARY"
+    - name: Badge
+      if: success() && github.event.repository.private != true
+      shell: bash
+      run: |
+        {
+          echo
+          echo "Show that this repository's skills are scanned on every pull request:"
+          echo
+          echo '```markdown'
+          echo "[![Skills scanned by Use This Skill](https://usethisskill.com/badge/scanned)](https://usethisskill.com/scan)"
+          echo '```'
+        } >> "$GITHUB_STEP_SUMMARY"
